@@ -1,0 +1,36 @@
+<form [formGroup]="form" novalidate>
+  <div class="card">
+    <div class="card-header">Account information</div>
+    <div class="card-body">
+      <div class="row">
+        <mat-form-field class="col-12" appearance="outline">
+          <mat-label>Account number</mat-label>
+          <input matInput readonly class="text-primary" value="{{f.accountNumber.value}}" />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-12" appearance="outline">
+          <mat-label for="accountType">Account type</mat-label>
+          <mat-select formControlName="accountType">
+            <mat-option *ngFor="let item of accountTypeItems"
+                        [value]="accountType[item]">
+              {{ item }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="f.accountType?.hasError('required')">Account type is required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-12" appearance="outline">
+          <mat-label for="balance">Initial balance</mat-label>
+          <input matInput
+                 type="number"
+                 placeholder="Initial balance"
+                 formControlName="balance">
+          <mat-error *ngIf="f.balance?.hasError('required')">Initial balance is required</mat-error>
+          <mat-error *ngIf="f.balance?.hasError('min')">Initial account balance can not be less than {{ initialBalanceRequired | currency }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</form>
