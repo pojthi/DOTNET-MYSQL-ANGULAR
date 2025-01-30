@@ -1,0 +1,11 @@
+<mat-toolbar class="command-bar" fxHide.xs *ngIf="isAuthenticated">
+  <mat-toolbar-row class="command-bar-row">
+    <button *ngFor="let item of commandBarButtons"
+      mat-button 
+      class="command-bar-button" 
+      [routerLink]="item.route">
+      <mat-icon>{{ item.icon }}</mat-icon>
+      {{ item.title }}
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>

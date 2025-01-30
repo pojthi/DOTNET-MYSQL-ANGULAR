@@ -1,0 +1,31 @@
+<mat-toolbar color="primary" class="navigation-bar">
+  <mat-toolbar-row>
+    <button mat-icon-button
+      *ngIf="isAuthenticated"
+      (click)="toggleSidenav.emit()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="toolbar-title">eBank</span>
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" *ngIf="isAuthenticated">
+      <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+        <li fxHide.xs>
+          <button mat-icon-button>
+            <mat-icon>help_outline</mat-icon>
+          </button>
+        </li>
+        <li>
+          <button mat-icon-button [matMenuTriggerFor]="auth" class="mr-5">
+            Hi, {{ loggedInUsername }}!
+          </button>
+          <mat-menu #auth="matMenu">
+            <button mat-menu-item
+              (click)="logOut()">
+              <mat-icon>lock</mat-icon>
+              Sign out
+            </button>
+          </mat-menu>
+        </li>
+      </ul>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
